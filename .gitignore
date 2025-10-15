@@ -1,0 +1,10 @@
+﻿*.pyc
+__pycache__/
+*.egg-info/
+.env
+.DS_Store
+.idea/
+.vscode/
+secrets.yml
+# Si tienes credenciales locales, ignóralas
+config/*
