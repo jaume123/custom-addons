@@ -1,0 +1,42 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="prova.tree">
+      <field name="name">prova.tree</field>
+      <field name="model">prova.prova</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="prova.form">
+      <field name="name">prova.form</field>
+      <field name="model">prova.prova</field>
+      <field name="arch" type="xml">
+        <form string="Prova Form">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="value"/>
+              <field name="value2"/>
+              <field name="description"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="prova.action_window">
+      <field name="name">Provas</field>
+      <field name="res_model">prova.prova</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="prova.menu_root" name="Prova"/>
+    <menuitem id="prova.menu_prova" name="Provas" parent="prova.menu_root" action="prova.action_window"/>
+
+  </data>
+</odoo>

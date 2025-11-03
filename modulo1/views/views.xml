@@ -1,0 +1,37 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="modulo1.list">
+      <field name="name">modulo1 list</field>
+      <field name="model">modulo1.libro</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="modulo1.action_window">
+      <field name="name">modulo1 window</field>
+      <field name="res_model">modulo1.libro</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="modulo1" id="modulo1.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Menu 1" id="modulo1.menu_1" parent="modulo1.menu_root" action="modulo1.action_window"/>
+    <menuitem name="Menu 2" id="modulo1.menu_2" parent="modulo1.menu_root"/>
+
+  </data>
+</odoo>
