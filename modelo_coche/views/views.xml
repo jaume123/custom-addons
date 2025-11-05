@@ -1,0 +1,105 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+   <record model="ir.ui.view" id="modelo_coche.list">
+      <field name="name">ModeloCoche list</field>
+      <field name="model">modelo_coche.marca</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="fecha_fundacion"/>
+          <field name="pais_origen"/>
+          <field name="n_fabricas"/>
+          <field name="modeloCoche_ids"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="modelo_coche.action_window">
+      <field name="name">Marca window</field>
+      <field name="res_model">modelo_coche.marca</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+<!-- server action to the one above -->
+
+    <record model="ir.actions.server" id="modelo_coche.action_server">
+      <field name="name">Marca</field>
+      <field name="model_id" ref="model_modelo_coche_modelo_coche"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+
+
+
+
+    <record model="ir.ui.view" id="modelo_coche.list">
+      <field name="name">ModeloCoche list</field>
+      <field name="model">modelo_coche.modelo_coche</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="año_fabricacion"/>
+          <field name="N_puertas"/>
+          <field name="color"/>
+          <field name="cv"/>
+          <field name="Deposito_litros"/>
+          <field name="marca_id"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="modelo_coche.action_window">
+      <field name="name">ModeloCoche window</field>
+      <field name="res_model">modelo_coche.modelo_coche</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+
+    <record model="ir.actions.server" id="modelo_coche.action_server">
+      <field name="name">ModeloCoche server</field>
+      <field name="model_id" ref="model_modelo_coche_modelo_coche"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="ModeloCoche" id="modelo_coche.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Menu 1" id="modelo_coche.menu_1" parent="modelo_coche.menu_root"/>
+    <menuitem name="Menu 2" id="modelo_coche.menu_2" parent="modelo_coche.menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="List" id="modelo_coche.menu_1_list" parent="modelo_coche.menu_1"
+              action="modelo_coche.action_window"/>
+    <menuitem name="Server to list" id="modelo_coche.menu_2_list" parent="modelo_coche.menu_2"
+              action="modelo_coche.action_server"/>
+
+  </data>
+</odoo>
