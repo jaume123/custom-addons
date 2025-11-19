@@ -1,105 +1,173 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-   <record model="ir.ui.view" id="modelo_coche.list">
-      <field name="name">ModeloCoche list</field>
+
+    <!-- ========== MARCA ========== -->
+
+    <record id="view_marca_tree" model="ir.ui.view">
+      <field name="name">modelo_coche.marca.tree</field>
       <field name="model">modelo_coche.marca</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree string="Marcas">
           <field name="name"/>
           <field name="fecha_fundacion"/>
           <field name="pais_origen"/>
           <field name="n_fabricas"/>
-          <field name="modeloCoche_ids"/>
         </tree>
       </field>
     </record>
 
+    <record id="view_marca_form" model="ir.ui.view">
+      <field name="name">modelo_coche.marca.form</field>
+      <field name="model">modelo_coche.marca</field>
+      <field name="arch" type="xml">
+        <form string="Marca">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="fecha_fundacion"/>
+              <field name="pais_origen"/>
+              <field name="n_fabricas"/>
+            </group>
+            <group string="Modelos">
+              <field name="modeloCoche_ids">
+                <tree editable="bottom">
+                  <field name="name"/>
+                  <field name="anio_fabricacion"/>
+                  <field name="N_puertas"/>
+                  <field name="color"/>
+                  <field name="cv"/>
+                  <field name="Deposito_litros"/>
+                </tree>
+              </field>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
 
-    <!-- actions opening views on models -->
-
-    <record model="ir.actions.act_window" id="modelo_coche.action_window">
-      <field name="name">Marca window</field>
+    <record id="action_marca" model="ir.actions.act_window">
+      <field name="name">Marcas</field>
       <field name="res_model">modelo_coche.marca</field>
       <field name="view_mode">tree,form</field>
     </record>
 
-<!-- server action to the one above -->
 
-    <record model="ir.actions.server" id="modelo_coche.action_server">
-      <field name="name">Marca</field>
-      <field name="model_id" ref="model_modelo_coche_modelo_coche"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
-      </field>
-    </record>
+    <!-- ========== MODELO DE COCHE ========== -->
 
-
-
-
-
-    <record model="ir.ui.view" id="modelo_coche.list">
-      <field name="name">ModeloCoche list</field>
+    <record id="view_modelo_coche_tree" model="ir.ui.view">
+      <field name="name">modelo_coche.modelo_coche.tree</field>
       <field name="model">modelo_coche.modelo_coche</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree string="Modelos de coche">
           <field name="name"/>
-          <field name="año_fabricacion"/>
+          <field name="marca_id"/>
+          <field name="anio_fabricacion"/>
           <field name="N_puertas"/>
           <field name="color"/>
           <field name="cv"/>
           <field name="Deposito_litros"/>
-          <field name="marca_id"/>
         </tree>
       </field>
     </record>
 
+    <record id="view_modelo_coche_form" model="ir.ui.view">
+      <field name="name">modelo_coche.modelo_coche.form</field>
+      <field name="model">modelo_coche.modelo_coche</field>
+      <field name="arch" type="xml">
+        <form string="Modelo de coche">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="marca_id"/>
+              <field name="anio_fabricacion"/>
+              <field name="N_puertas"/>
+              <field name="color"/>
+              <field name="cv"/>
+              <field name="Deposito_litros"/>
+            </group>
+            <group string="Versiones">
+              <field name="version_ids">
+                <tree editable="bottom">
+                  <field name="name"/>
+                  <field name="precio"/>
+                </tree>
+              </field>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
 
-    <!-- actions opening views on models -->
-
-    <record model="ir.actions.act_window" id="modelo_coche.action_window">
-      <field name="name">ModeloCoche window</field>
+    <record id="action_modelo_coche" model="ir.actions.act_window">
+      <field name="name">Modelos de coche</field>
       <field name="res_model">modelo_coche.modelo_coche</field>
       <field name="view_mode">tree,form</field>
     </record>
 
 
-    <!-- server action to the one above -->
+    <!-- ========== VERSION ========== -->
 
-    <record model="ir.actions.server" id="modelo_coche.action_server">
-      <field name="name">ModeloCoche server</field>
-      <field name="model_id" ref="model_modelo_coche_modelo_coche"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
+    <record id="view_version_tree" model="ir.ui.view">
+      <field name="name">modelo_coche.version.tree</field>
+      <field name="model">modelo_coche.version</field>
+      <field name="arch" type="xml">
+        <tree string="Versiones">
+          <field name="name"/>
+          <field name="modelo_coche_id"/>
+          <field name="precio"/>
+        </tree>
       </field>
     </record>
 
+    <record id="view_version_form" model="ir.ui.view">
+      <field name="name">modelo_coche.version.form</field>
+      <field name="model">modelo_coche.version</field>
+      <field name="arch" type="xml">
+        <form string="Versión">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="modelo_coche_id"/>
+              <field name="precio"/>
+            </group>
+            <group>
+              <field name="equipamiento"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
 
-    <!-- Top menu item -->
+    <record id="action_version" model="ir.actions.act_window">
+      <field name="name">Versiones</field>
+      <field name="res_model">modelo_coche.version</field>
+      <field name="view_mode">tree,form</field>
+    </record>
 
-    <menuitem name="ModeloCoche" id="modelo_coche.menu_root"/>
 
-    <!-- menu categories -->
+    <!-- ========== MENÚS ========== -->
 
-    <menuitem name="Menu 1" id="modelo_coche.menu_1" parent="modelo_coche.menu_root"/>
-    <menuitem name="Menu 2" id="modelo_coche.menu_2" parent="modelo_coche.menu_root"/>
+    <menuitem id="menu_modelo_coche_root"
+              name="Modelos de coche"
+              sequence="10"/>
 
-    <!-- actions -->
+    <menuitem id="menu_marca"
+              name="Marcas"
+              parent="menu_modelo_coche_root"
+              action="action_marca"
+              sequence="20"/>
 
-    <menuitem name="List" id="modelo_coche.menu_1_list" parent="modelo_coche.menu_1"
-              action="modelo_coche.action_window"/>
-    <menuitem name="Server to list" id="modelo_coche.menu_2_list" parent="modelo_coche.menu_2"
-              action="modelo_coche.action_server"/>
+    <menuitem id="menu_modelo_coche"
+              name="Modelos"
+              parent="menu_modelo_coche_root"
+              action="action_modelo_coche"
+              sequence="30"/>
+
+    <menuitem id="menu_version"
+              name="Versiones"
+              parent="menu_modelo_coche_root"
+              action="action_version"
+              sequence="40"/>
 
   </data>
 </odoo>

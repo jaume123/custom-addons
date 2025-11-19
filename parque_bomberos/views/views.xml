@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="parque_bomberos.list">
+      <field name="name">ParqueBomberos list</field>
+      <field name="model">parque_bomberos.parque_bomberos</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="parque_bomberos.action_window">
+      <field name="name">ParqueBomberos window</field>
+      <field name="res_model">parque_bomberos.parque_bomberos</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="parque_bomberos.action_server">
+      <field name="name">ParqueBomberos server</field>
+      <field name="model_id" ref="model_parque_bomberos_parque_bomberos"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="ParqueBomberos" id="parque_bomberos.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="parque_bomberos.menu_1" parent="parque_bomberos.menu_root"/>
+    <menuitem name="Menu 2" id="parque_bomberos.menu_2" parent="parque_bomberos.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="parque_bomberos.menu_1_list" parent="parque_bomberos.menu_1"
+              action="parque_bomberos.action_window"/>
+    <menuitem name="Server to list" id="parque_bomberos" parent="parque_bomberos.menu_2"
+              action="parque_bomberos.action_server"/>
+-->
+  </data>
+</odoo>

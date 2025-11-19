@@ -1,0 +1,229 @@
+<odoo>
+  <data>
+
+    <!-- ===========================
+         VISTAS: Clase (aula.clase)
+         =========================== -->
+    <record id="view_aula_clase_tree" model="ir.ui.view">
+      <field name="name">aula.clase.tree</field>
+      <field name="model">aula.clase</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="num_alumnos"/>
+          <field name="tutor"/>
+          <field name="asignaturas"/>
+          <field name="capacidad_sillas"/>
+          <field name="nro_ordenadores"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_aula_clase_form" model="ir.ui.view">
+      <field name="name">aula.clase.form</field>
+      <field name="model">aula.clase</field>
+      <field name="arch" type="xml">
+        <form string="Clase">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="num_alumnos"/>
+              <field name="tutor"/>
+              <field name="asignaturas"/>
+              <field name="capacidad_sillas"/>
+              <field name="nro_ordenadores"/>
+            </group>
+            <notebook>
+              <page string="Ordenadores">
+                <field name="ordenador_ids">
+                  <tree editable="bottom">
+                    <field name="name"/>
+                    <field name="marca"/>
+                    <field name="modelo"/>
+                    <field name="anio_fabricacion"/>
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_aula_clase" model="ir.actions.act_window">
+      <field name="name">Clases</field>
+      <field name="res_model">aula.clase</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          Crea la primera clase
+        </p>
+      </field>
+    </record>
+
+    <!-- ===========================
+         VISTAS: Ordenador (aula.ordenador)
+         =========================== -->
+    <record id="view_aula_ordenador_tree" model="ir.ui.view">
+      <field name="name">aula.ordenador.tree</field>
+      <field name="model">aula.ordenador</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="marca"/>
+          <field name="modelo"/>
+          <field name="anio_fabricacion"/>
+          <field name="tipo_ordenador"/>
+          <field name="clase_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_aula_ordenador_form" model="ir.ui.view">
+      <field name="name">aula.ordenador.form</field>
+      <field name="model">aula.ordenador</field>
+      <field name="arch" type="xml">
+        <form string="Ordenador">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="marca"/>
+              <field name="modelo"/>
+              <field name="anio_fabricacion"/>
+              <field name="usb_ports"/>
+              <field name="tipo_ordenador"/>
+              <field name="clase_id"/>
+            </group>
+            <notebook>
+              <page string="Alumnos">
+                <field name="alumno_ids">
+                  <tree editable="bottom">
+                    <field name="name"/>
+                    <field name="surname"/>
+                    <field name="age"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="Componentes">
+                <field name="componentes_ids">
+                  <tree editable="bottom">
+                    <field name="name"/>
+                    <field name="tipo_componente"/>
+                    <field name="unidades"/>
+                    <field name="precio"/>
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_aula_ordenador" model="ir.actions.act_window">
+      <field name="name">Ordenadores</field>
+      <field name="res_model">aula.ordenador</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- ===========================
+         VISTAS: Componentes (aula.componentes)
+         =========================== -->
+    <record id="view_aula_componentes_tree" model="ir.ui.view">
+      <field name="name">aula.componentes.tree</field>
+      <field name="model">aula.componentes</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="tipo_componente"/>
+          <field name="unidades"/>
+          <field name="precio"/>
+          <field name="ordenador_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_aula_componentes_form" model="ir.ui.view">
+      <field name="name">aula.componentes.form</field>
+      <field name="model">aula.componentes</field>
+      <field name="arch" type="xml">
+        <form string="Componente">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="tipo_componente"/>
+              <field name="unidades"/>
+              <field name="precio"/>
+              <field name="ordenador_id"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_aula_componentes" model="ir.actions.act_window">
+      <field name="name">Componentes</field>
+      <field name="res_model">aula.componentes</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- ===========================
+         VISTAS: Alumno (aula.alumno)
+         =========================== -->
+    <record id="view_aula_alumno_tree" model="ir.ui.view">
+      <field name="name">aula.alumno.tree</field>
+      <field name="model">aula.alumno</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="surname"/>
+          <field name="age"/>
+          <field name="mayor_edad"/>
+          <field name="ordenador_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_aula_alumno_form" model="ir.ui.view">
+      <field name="name">aula.alumno.form</field>
+      <field name="model">aula.alumno</field>
+      <field name="arch" type="xml">
+        <form string="Alumno">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="surname"/>
+              <field name="age"/>
+              <field name="direccion"/>
+              <field name="mayor_edad"/>
+              <field name="ordenador_id"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_aula_alumno" model="ir.actions.act_window">
+      <field name="name">Alumnos</field>
+      <field name="res_model">aula.alumno</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- ===========================
+         MENÚS
+         =========================== -->
+    <menuitem id="menu_aula_root" name="Aula" sequence="10"/>
+
+    <!-- Submenu: Gestión -->
+    <menuitem id="menu_aula_gestion" name="Gestión" parent="menu_aula_root" sequence="10"/>
+
+    <menuitem id="menu_aula_clases" name="Clases" parent="menu_aula_gestion" action="action_aula_clase" sequence="10"/>
+    <menuitem id="menu_aula_ordenadores" name="Ordenadores" parent="menu_aula_gestion" action="action_aula_ordenador" sequence="20"/>
+    <menuitem id="menu_aula_componentes" name="Componentes" parent="menu_aula_gestion" action="action_aula_componentes" sequence="30"/>
+    <menuitem id="menu_aula_alumnos" name="Alumnos" parent="menu_aula_gestion" action="action_aula_alumno" sequence="40"/>
+
+    <!-- Submenu: Reportes / Otros (opcional) -->
+    <menuitem id="menu_aula_reportes" name="Reportes" parent="menu_aula_root" sequence="20"/>
+
+  </data>
+</odoo>
