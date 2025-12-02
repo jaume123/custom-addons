@@ -1,60 +1,169 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-<!--
-    <record model="ir.ui.view" id="parque_bomberos.list">
-      <field name="name">ParqueBomberos list</field>
-      <field name="model">parque_bomberos.parque_bomberos</field>
+    <!-- Vista del camion-->
+    <record model="ir.ui.view" id="parque_bomberos.camion_list">
+      <field name="name">ParqueBomberos camion list</field>
+      <field name="model">parque_bomberos.camion</field>
       <field name="arch" type="xml">
         <tree>
           <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
+          <field name="matricula"/>
+          <field name="activo"/>
+          <field name="bomberos_ids"/>
+          <field name="tipo_ruedas"/>
+          <field name="color"/>
+          <field name="manguera_extensible"/>
         </tree>
       </field>
     </record>
--->
 
-    <!-- actions opening views on models -->
-<!--
-    <record model="ir.actions.act_window" id="parque_bomberos.action_window">
-      <field name="name">ParqueBomberos window</field>
-      <field name="res_model">parque_bomberos.parque_bomberos</field>
-      <field name="view_mode">tree,form</field>
-    </record>
--->
-
-    <!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="parque_bomberos.action_server">
-      <field name="name">ParqueBomberos server</field>
-      <field name="model_id" ref="model_parque_bomberos_parque_bomberos"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
+    <!-- Vista form del camion-->
+    <record model="ir.ui.view" id="parque_bomberos.camion_form">
+      <field name="name">ParqueBomberos camion form</field>
+      <field name="model">parque_bomberos.camion</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="matricula"/>
+              <field name="parque_id"/>
+              <field name="activo"/>
+              <field name="tipo_ruedas"/>
+              <field name="color"/>
+              <field name="manguera_extensible"/>
+              <field name="bomberos_ids"/>
+            </group>
+          </sheet>
+        </form>
       </field>
     </record>
--->
+
+    <!-- Vista calendar del camion-->
+    <record model="ir.ui.view" id="parque_bomberos.camion_calendar">
+      <field name="name">ParqueBomberos camion calendar</field>
+      <field name="model">parque_bomberos.camion</field>
+      <field name="arch" type="xml">
+        <calendar string="Camiones" date_start="fecha_compra" color="tipo_ruedas">
+          <field name="name"/>
+          <field name="matricula"/>
+        </calendar>
+      </field>
+    </record>
+
+    <!-- Action para camion-->
+    <record model="ir.actions.act_window" id="parque_bomberos.camion_action_window">
+      <field name="name">Camiones</field>
+      <field name="res_model">parque_bomberos.camion</field>
+      <field name="view_mode">tree,form,calendar</field>
+    </record>
+
+    <!-- Vista del bombero  -->
+    <record model="ir.ui.view" id="parque_bomberos.list">
+      <field name="name">ParqueBomberos list</field>
+      <field name="model">parque_bomberos.bombero</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="nombre_completo"/>
+          <field name="edad"/>
+          <field name="fecha_nacimiento"/>
+          <field name="camion_id"/>
+          <field name="activo"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Vista form del bombero -->
+    <record model="ir.ui.view" id="parque_bomberos.bombero_form">
+      <field name="name">ParqueBomberos bombero form</field>
+      <field name="model">parque_bomberos.bombero</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="apellido1"/>
+              <field name="apellido2"/>
+              <field name="nombre_completo"/>
+              <field name="fecha_nacimiento"/>
+              <field name="edad"/>
+              <field name="camion_id"/>
+              <field name="activo"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Vista calendar del bombero -->
+    <record model="ir.ui.view" id="parque_bomberos.bombero_calendar">
+      <field name="name">ParqueBomberos bombero calendar</field>
+      <field name="model">parque_bomberos.bombero</field>
+      <field name="arch" type="xml">
+        <calendar string="Bomberos" date_start="fecha_nacimiento" color="activo">
+          <field name="name"/>
+          <field name="edad"/>
+        </calendar>
+      </field>
+    </record>
+
+    <!-- Action para bombero -->
+    <record model="ir.actions.act_window" id="parque_bomberos.action_window">
+      <field name="name">Bomberos</field>
+      <field name="res_model">parque_bomberos.bombero</field>
+      <field name="view_mode">tree,form,calendar</field>
+    </record>
+
+    <!-- ========== VISTAS DEL PARQUE ========== -->
+    
+    <!-- Vista TREE del parque -->
+    <record model="ir.ui.view" id="parque_bomberos.parque_list">
+      <field name="name">ParqueBomberos parque list</field>
+      <field name="model">parque_bomberos.parque</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="direccion"/>
+          <field name="ubicacion"/>
+          <field name="activo"/>
+          <field name="numerodepartamento"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Vista FORM del parque -->
+    <record model="ir.ui.view" id="parque_bomberos.parque_form">
+      <field name="name">ParqueBomberos parque form</field>
+      <field name="model">parque_bomberos.parque</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="direccion"/>
+              <field name="ubicacion"/>
+              <field name="activo"/>
+              <field name="numerodepartamento"/>
+              <field name="camion_ids"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Action para parque -->
+    <record model="ir.actions.act_window" id="parque_bomberos.parque_action_window">
+      <field name="name">Parques</field>
+      <field name="res_model">parque_bomberos.parque</field>
+      <field name="view_mode">tree,form</field>
+    </record>
 
     <!-- Top menu item -->
-<!--
     <menuitem name="ParqueBomberos" id="parque_bomberos.menu_root"/>
--->
-    <!-- menu categories -->
-<!--
-    <menuitem name="Menu 1" id="parque_bomberos.menu_1" parent="parque_bomberos.menu_root"/>
-    <menuitem name="Menu 2" id="parque_bomberos.menu_2" parent="parque_bomberos.menu_root"/>
--->
-    <!-- actions -->
-<!--
-    <menuitem name="List" id="parque_bomberos.menu_1_list" parent="parque_bomberos.menu_1"
-              action="parque_bomberos.action_window"/>
-    <menuitem name="Server to list" id="parque_bomberos" parent="parque_bomberos.menu_2"
-              action="parque_bomberos.action_server"/>
--->
+
+    <!-- Submenus -->
+    <menuitem name="Bomberos" id="parque_bomberos.menu_bomberos" parent="parque_bomberos.menu_root" action="parque_bomberos.action_window"/>
+    <menuitem name="Camiones" id="parque_bomberos.menu_camiones" parent="parque_bomberos.menu_root" action="parque_bomberos.camion_action_window"/>
+    <menuitem name="Parques" id="parque_bomberos.menu_parques" parent="parque_bomberos.menu_root" action="parque_bomberos.parque_action_window"/>
   </data>
 </odoo>
