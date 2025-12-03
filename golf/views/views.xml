@@ -1,0 +1,114 @@
+<odoo>
+  <data>
+    <!-- Vista tree de jugador  -->
+
+    <record model="ir.ui.view" id="golf_jugador_tree">
+      <field name="name">golf list</field>
+      <field name="model">golf.jugador</field>
+      <field name="arch" type="xml">
+        <tree>
+           <field name="name"/>
+            <field name="fecha_nacimiento"/>
+            <field name="edad"/>
+            <field name="nombre_Equipo"/>
+            <field name="tipo_jugador"/>
+            <field name="caddies_ids"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!--Vista de formulario de jugador -->
+
+    <record id="view_golf_jugador_form" model="ir.ui.view">
+      <field name="name">golf.jugador.form</field>
+      <field name="model">golf.jugador</field>
+      <field name="arch" type="xml">
+        <form string="jugador">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="fecha_nacimiento"/>
+              <field name="edad"/>
+              <field name="nombre_Equipo"/>
+              <field name="tipo_jugador"/>
+              <field name="tipo_palo"/>
+              <field name="caddies_ids" />
+            </group>        
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+     <!--Avtions de jugadro -->
+
+    <record model="ir.actions.act_window" id="action_jugador">
+      <field name="name">Jugadores</field>
+      <field name="res_model">golf.jugador</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Vista tree de caddies  -->
+
+    <record model="ir.ui.view" id="golf_caddie_tree">
+      <field name="name">golf list</field>
+      <field name="model">golf.caddie</field>
+      <field name="arch" type="xml">
+        <tree>
+           <field name="name"/>
+              <field name="tipo_bolsa"/>
+              <field name="guantes_antideslizantes"/>
+              <field name="kit_primerosAuxilios"/>
+              <field name="tipo_gps"/>
+              <field name="jugadores_ids"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!--Vista de formulario de caddie -->
+  
+    <record id="view_golf_caddie_form" model="ir.ui.view">
+      <field name="name">golf.caddie.form</field>
+      <field name="model">golf.caddie</field>
+      <field name="arch" type="xml">
+        <form string="caddie">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="tipo_bolsa"/>
+              <field name="guantes_antideslizantes"/>
+              <field name="kit_primerosAuxilios"/>
+              <field name="tipo_gps"/>
+              <field name="jugadores_ids"/>
+              
+            </group>        
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+     <!--action de caddie -->
+
+    <record model="ir.actions.act_window" id="action_caddie">
+      <field name="name">caddies</field>
+      <field name="res_model">golf.caddie</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+  
+
+    <!-- Top menu item -->
+
+    <menuitem name="golf" id="golf.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Jugadores" id="golf.menu_1" parent="golf.menu_root" action ="action_jugador"/>
+    <menuitem name="caddies" id="golf.menu_2" parent="golf.menu_root" action ="action_caddie"/>
+   
+
+  </data>
+</odoo>

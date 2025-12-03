@@ -1,0 +1,160 @@
+<odoo>
+  <data>
+
+  <!--    Vista jugador      -->
+    <record model="ir.ui.view" id="golfv2_jugador_tree">
+      <field name="name">golfv2.jugador.tree</field>
+      <field name="model">golfv2.jugador</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="fecha_nacimiento"/>
+          <field name="edad"/>
+          <field name="nombre_Equipo"/>
+          <field name="tipo_jugador"/>
+          <field name="tipo_palo"/>
+          <field name="partidos_ids"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_golfv2_jugador_form" model="ir.ui.view">
+      <field name="name">golfv2.jugador.form</field>
+      <field name="model">golfv2.jugador</field>
+      <field name="arch" type="xml">
+        <form string="Jugador">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="fecha_nacimiento"/>
+              <field name="edad"/>
+              <field name="nombre_Equipo"/>
+              <field name="tipo_jugador"/>
+              <field name="tipo_palo"/>
+              <field name="partidos_ids"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="golfv2.action_jugador">
+      <field name="name">Jugadores</field>
+      <field name="res_model">golfv2.jugador</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+    
+<!-- Vista del hoyo -->
+    <record model="ir.ui.view" id="golfv2_hoyo_tree">
+      <field name="name">golfv2.hoyo.tree</field>
+      <field name="model">golfv2.hoyo</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="numero_hoyo"/>
+          <field name="par"/>
+          <field name="distancia"/>
+          <field name="dificultad"/>
+          <field name="partidos_ids"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_golfv2_hoyo_form" model="ir.ui.view">
+      <field name="name">golfv2.hoyo.form</field>
+      <field name="model">golfv2.hoyo</field>
+      <field name="arch" type="xml">
+        <form string="Hoyo">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="numero_hoyo"/>
+              <field name="par"/>
+              <field name="distancia"/>
+              <field name="dificultad"/>
+            </group>
+
+            <notebook>
+              <page string="Partidos donde aparece este Hoyo">
+                <field name="partidos_ids"/>
+              </page>
+            </notebook>
+
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="golfv2.action_hoyo">
+      <field name="name">Hoyos</field>
+      <field name="res_model">golfv2.hoyo</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+  
+  
+    <!-- VISTA DEL PARTIDO  -->
+    <record model="ir.ui.view" id="golfv2_partido_tree">
+      <field name="name">golfv2.partido.tree</field>
+      <field name="model">golfv2.partido</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="fecha_partido"/>
+          <field name="lugar"/>
+          <field name="jugador_id"/>
+          <field name="hoyo_id"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record id="view_golfv2_partido_form" model="ir.ui.view">
+      <field name="name">golfv2.partido.form</field>
+      <field name="model">golfv2.partido</field>
+      <field name="arch" type="xml">
+        <form string="Partido (registro intermedio)">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="fecha_partido"/>
+              <field name="lugar"/>
+              <field name="jugador_id"/>
+              <field name="hoyo_id"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="golfv2.action_partido">
+      <field name="name">Partidos</field>
+      <field name="res_model">golfv2.partido</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+    
+    <!--          menu            -->
+    
+
+    <menuitem name="golfv2" id="golfv2.menu_root"/>
+
+    <menuitem name="Jugadores" id="golfv2.menu_1"
+              parent="golfv2.menu_root" action="golfv2.action_jugador"/>
+
+    <menuitem name="Hoyos" id="golfv2.menu_2"
+              parent="golfv2.menu_root" action="golfv2.action_hoyo"/>
+
+    <menuitem name="Partidos" id="golfv2.menu_3"
+              parent="golfv2.menu_root" action="golfv2.action_partido"/>
+
+  </data>
+</odoo>
