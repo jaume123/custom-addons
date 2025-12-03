@@ -9,7 +9,7 @@
           <field name="name"/>
           <field name="matricula"/>
           <field name="activo"/>
-          <field name="bomberos_ids"/>
+          <field name="tablaintermedia_ids"/>
           <field name="tipo_ruedas"/>
           <field name="color"/>
           <field name="manguera_extensible"/>
@@ -32,7 +32,7 @@
               <field name="tipo_ruedas"/>
               <field name="color"/>
               <field name="manguera_extensible"/>
-              <field name="bomberos_ids"/>
+              <field name="tablaintermedia_ids"/>
             </group>
           </sheet>
         </form>
@@ -67,8 +67,9 @@
           <field name="nombre_completo"/>
           <field name="edad"/>
           <field name="fecha_nacimiento"/>
-          <field name="camion_id"/>
+          <field name="tablaintermedia_ids"/>
           <field name="activo"/>
+         
         </tree>
       </field>
     </record>
@@ -87,8 +88,9 @@
               <field name="nombre_completo"/>
               <field name="fecha_nacimiento"/>
               <field name="edad"/>
-              <field name="camion_id"/>
+              <field name="tablaintermedia_ids"/>
               <field name="activo"/>
+              <field name ="puesto_id"/>
             </group>
           </sheet>
         </form>
@@ -158,6 +160,93 @@
       <field name="view_mode">tree,form</field>
     </record>
 
+
+
+
+      
+    <!-- Vista TREE del puesto -->
+    <record model="ir.ui.view" id="parque_bomberos_puesto">
+      <field name="name">PuestoBomberos  list</field>
+      <field name="model">parque_bomberos.puesto</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="salario"/>
+          <field name="dias_laborales"/>
+          <field name="cargo"/>
+          <field name="bombero_ids"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Vista FORM del parque -->
+    <record model="ir.ui.view" id="parque_bomberos.puesto_form">
+      <field name="name">ParqueBomberos puesto form</field>
+      <field name="model">parque_bomberos.puesto</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="salario"/>
+              <field name="dias_laborales"/>
+              <field name="cargo"/>
+              <field name="bombero_ids"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Action para puesto -->
+    <record model="ir.actions.act_window" id="parque_bomberos.puesto_action_window">
+      <field name="name">puestos</field>
+      <field name="res_model">parque_bomberos.puesto</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+      
+    <!-- Vista TREE del tablaintermedia -->
+    <record model="ir.ui.view" id="parque_bomberos_tablaintermedia">
+      <field name="name">tablaintermedia  list</field>
+      <field name="model">parque_bomberos.tablaintermedia</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="descripcion"/>
+          <field name="bombero_ids"/>
+          <field name="camion_ids"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Vista FORM del tabla intermedia -->
+    <record model="ir.ui.view" id="parque_bomberos.tablaintermedia_form">
+      <field name="name">ParqueBomberos tablaintermedia form</field>
+      <field name="model">parque_bomberos.tablaintermedia</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+          <field name="name"/>
+          <field name="descripcion"/>
+          <field name="bombero_ids"/>
+          <field name="camion_ids"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Action para tablaintermedia -->
+    <record model="ir.actions.act_window" id="parque_bomberos.tablaintermedia_action_window">
+      <field name="name">tablaintermedia</field>
+      <field name="res_model">parque_bomberos.tablaintermedia</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
     <!-- Top menu item -->
     <menuitem name="ParqueBomberos" id="parque_bomberos.menu_root"/>
 
@@ -165,5 +254,7 @@
     <menuitem name="Bomberos" id="parque_bomberos.menu_bomberos" parent="parque_bomberos.menu_root" action="parque_bomberos.action_window"/>
     <menuitem name="Camiones" id="parque_bomberos.menu_camiones" parent="parque_bomberos.menu_root" action="parque_bomberos.camion_action_window"/>
     <menuitem name="Parques" id="parque_bomberos.menu_parques" parent="parque_bomberos.menu_root" action="parque_bomberos.parque_action_window"/>
+     <menuitem name="Puestos" id="parque_bomberos.menu_puestos" parent="parque_bomberos.menu_root" action="parque_bomberos.puesto_action_window"/>
+     <menuitem name="tablaintermedia" id="parque_bomberos.menu_tablaintermedia" parent="parque_bomberos.menu_root" action="parque_bomberos.tablaintermedia_action_window"/>
   </data>
 </odoo>
