@@ -1,0 +1,230 @@
+  <odoo>
+    <data>
+  <!-- Vista del Cliente  -->
+      <record model="ir.ui.view" id="cestacompra.cliente_tree">
+        <field name="name">Cestacompra tree</field>
+        <field name="model">cestacompra.cliente</field>
+        <field name="arch" type="xml">
+          <tree>
+            <field name="name"/>
+            <field name="apellido"/>
+            <field name="email"/>
+            <field name="telefono"/>
+            <field name="direccion"/>
+            <field name="fecha_nacimiento"/>
+            <field name="activo"/>
+            <field name="country_id"/>
+          
+          </tree>
+        </field>
+      </record>
+
+      <!-- Vista form del cliente -->
+      <record model="ir.ui.view" id="cestacompra.cliente_form">
+        <field name="name">Cestacompra cliente form</field>
+        <field name="model">cestacompra.cliente</field>
+        <field name="arch" type="xml">
+          <form>
+            <sheet>
+              <group>
+                <field name="name"/>
+            <field name="apellido"/>
+            <field name="email"/>
+            <field name="telefono"/>
+            <field name="direccion"/>
+            <field name="fecha_nacimiento"/>
+            <field name="activo"/>
+            <field name="cesta_ids"/>
+            <field name="country_id"/>
+          
+              </group>
+            </sheet>
+          </form>
+        </field>
+      </record>
+
+      <!-- Vista calendar del cliente -->
+    <record model="ir.ui.view" id="cestacompra.cliente_calendar">
+      <field name="name">Cestacompra cliente calendar</field>
+      <field name="model">cestacompra.cliente</field>
+      <field name="arch" type="xml">
+        <calendar string="clietne" date_start="fecha_nacimiento" color="activo">
+          <field name="name"/>
+          <field name="country_id"/>
+        </calendar>
+      </field>
+    </record>
+
+    
+
+      <!-- Action para cliente -->
+      <record model="ir.actions.act_window" id="cestacompra.cliente_action_window">
+        <field name="name">Cliente</field>
+        <field name="res_model">cestacompra.cliente</field>
+        <field name="view_mode">tree,form,calendar</field>
+      </record>
+
+
+
+  <!-- Vista del CestaCompra -->
+<record model="ir.ui.view" id="cestacompra.cesta_compra_tree">
+    <field name="name">CestaCompra tree</field>
+    <field name="model">cestacompra.cesta_compra</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="cliente_id"/>
+            <field name="fecha_creacion"/>
+            <field name="estado"/>
+            <field name="observaciones"/>
+            <field name="linea_ids"/>
+            <field name="total"/>
+        </tree>
+    </field>
+</record>
+
+<!-- vista de formulario de cesta-->
+    <record model="ir.ui.view" id="cestacompra.cesta_compra_form">
+    <field name="name">CestaCompra form</field>
+    <field name="model">cestacompra.cesta_compra</field>
+    <field name="arch" type="xml">
+        <form string="Cesta de la compra">
+            <header>
+                <button name="action_confirmar"
+                        type="object"
+                        string="Confirmar"
+                        class="btn-primary"/>
+                <field name="estado" widget="statusbar"/>
+            </header>
+
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="cliente_id"/>
+                </group>
+
+                <field name="linea_ids">
+                    <tree editable="bottom">
+                        <field name="producto_id"/>
+                        <field name="cantidad"/>
+                        <field name="precio_unitario"/>
+                        <field name="subtotal" readonly="1"/>
+                    </tree>
+                </field>
+
+                <group>
+                    <field name="total" readonly="1"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+
+
+<!-- Action -->
+<record model="ir.actions.act_window" id="cestacompra.cesta_compra_action_window">
+    <field name="name">CestaCompra</field>
+    <field name="res_model">cestacompra.cesta_compra</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+
+<!-- Vista de producto -->
+  <!-- Vista del producto -->
+<record model="ir.ui.view" id="cestacompra.producto_tree">
+    <field name="name">CestaCompra tree</field>
+    <field name="model">cestacompra.producto</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="descripcion"/>
+            <field name="precio"/>
+            <field name="stock"/>
+            <field name="tipo_producto"/>
+            <field name="linea_cesta_ids"/>
+            
+        </tree>
+    </field>
+</record>
+<!-- Form del producto -->
+<record model="ir.ui.view" id="cestacompra.producto_form">
+    <field name="name">CestaCompra form</field>
+    <field name="model">cestacompra.producto</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="name"/>
+            <field name="descripcion"/>
+            <field name="precio"/>
+            <field name="stock"/>
+            <field name="tipo_producto"/>
+            <field name="linea_cesta_ids"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<!-- Action  del producto -->
+<record model="ir.actions.act_window" id="cestacompra.producto_action_window">
+    <field name="name">Productos</field>
+    <field name="res_model">cestacompra.producto</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<!--Vista para la linea de cesta-->
+<record model="ir.ui.view" id="cestacompra.linea_cesta_tree">
+    <field name="name">linea_cesta tree</field>
+    <field name="model">cestacompra.linea_cesta</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="cesta_id"/>
+            <field name="producto_id"/>
+            <field name="cantidad"/>
+            <field name="precio_unitario"/>
+            <field name="subtotal"/>
+           
+        </tree>
+    </field>
+</record>
+<!-- Form de la line de cesta -->
+<record model="ir.ui.view" id="cestacompra.linea_cesta_form">
+    <field name="name">Linea cesta form</field>
+    <field name="model">cestacompra.linea_cesta</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                   <field name="cesta_id"/>
+            <field name="producto_id"/>
+            <field name="cantidad"/>
+            <field name="precio_unitario"/>
+            <field name="subtotal"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<!-- Action  del  la linea de cesta -->
+<record model="ir.actions.act_window" id="cestacompra.linea_cesta_action_window">
+    <field name="name">linea cesta</field>
+    <field name="res_model">cestacompra.linea_cesta</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+
+      <!-- Top menu item -->
+      <menuitem name="CestaCompra" id="cestacompra.menu_root"/>
+
+      <!-- Submenus -->
+      <menuitem name="Cliente" id="cestacompra.menu_cestacompra" parent="cestacompra.menu_root" action="cestacompra.cliente_action_window"/>
+      <menuitem name="CestaCompra" id="cestacompra.menu_CestaCompra" parent="cestacompra.menu_root" action="cestacompra.cesta_compra_action_window"/>
+      <menuitem name="Producto" id="cestacompra.menu_CestaCompra_compra" parent="cestacompra.menu_root" action="cestacompra.producto_action_window"/>
+        <menuitem name="Linea_Cesta" id="cestacompra.menu_CestaCompra_linea" parent="cestacompra.menu_root" action="cestacompra.linea_cesta_action_window"/>
+
+
+    </data>
+  </odoo>
