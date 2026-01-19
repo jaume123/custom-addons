@@ -1,0 +1,172 @@
+<odoo>
+  <data>
+    <!-- Vista tree de equipo  -->
+
+    <record model="ir.ui.view" id="futbol_equipo_tree">
+      <field name="name">futbol list</field>
+      <field name="model">futbol.equipo</field>
+      <field name="arch" type="xml">
+        <tree>
+           <field name="puntos"/>
+           <field name="name"/>
+            <field name="fecha_creacion"/>
+            <field name="estadio"/>
+            <field name="entrenador"/>
+          <field name="partidos_local_ids"/>
+          <field name="partidos_visitante_ids"/>
+            <field name="jugador_ids"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!--Vista de formulario de equipo -->
+
+    <record id="view_futbol_equipo_form" model="ir.ui.view">
+      <field name="name">futbol.equipo.form</field>
+      <field name="model">futbol.equipo</field>
+      <field name="arch" type="xml">
+        <form string="equipo">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="puntos" readonly="1"/>
+              <field name="fecha_creacion"/>
+              <field name="estadio"/>
+              <field name="entrenador"/>
+              <field name="partidos_local_ids"/>
+              <field name="partidos_visitante_ids"/>
+              <field name="jugador_ids"/>
+            </group>        
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+     <!--Actions de equipo -->
+
+    <record model="ir.actions.act_window" id="action_equipo">
+      <field name="name">Equipos</field>
+      <field name="res_model">futbol.equipo</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Vista tree de partidos  -->
+
+    <record model="ir.ui.view" id="futbol_partido_tree">
+      <field name="name">futbol list</field>
+      <field name="model">futbol.partido</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom">
+           <field name="name"/>
+              <field name="fecha_partido"/>
+              <field name="resultado"/>
+              <field name="goles_local"/>
+              <field name="goles_visitante"/>
+              <field name="equipo_local_id"/>
+              <field name="equipo_visitante_id"/>
+              <field name="finalizado"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!--Vista de formulario de partido -->
+  
+    <record id="view_futbol_partido_form" model="ir.ui.view">
+      <field name="name">futbol.partido.form</field>
+      <field name="model">futbol.partido</field>
+      <field name="arch" type="xml">
+        <form string="partido">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="fecha_partido"/>
+              <field name="resultado"/>
+              <field name="goles_local"/>
+              <field name="goles_visitante"/>
+              <field name="equipo_local_id"/>
+              <field name="equipo_visitante_id"/>
+              <field name="finalizado"/>
+              
+            </group>        
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+     <!--action de partido -->
+
+    <record model="ir.actions.act_window" id="action_partido">
+      <field name="name">Partidos</field>
+      <field name="res_model">futbol.partido</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- Vista tree de jugador  -->
+
+    <record model="ir.ui.view" id="futbol_jugador_tree">
+      <field name="name">futbol list</field>
+      <field name="model">futbol.jugador</field>
+      <field name="arch" type="xml">
+        <tree>
+           <field name="name"/>
+              <field name="edad"/>
+              <field name="posicion"/>
+              <field name="equipo_id"/>
+              <field name="numero_camiseta"/>
+              <field name="fecha_firma"/>
+              <field name="nacionalidad"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!--Vista de formulario de jugador -->
+  
+    <record id="view_futbol_jugador_form" model="ir.ui.view">
+      <field name="name">futbol.jugador.form</field>
+      <field name="model">futbol.jugador</field>
+      <field name="arch" type="xml">
+        <form string="jugador">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="edad"/>
+              <field name="posicion"/>
+              <field name="equipo_id"/>
+              <field name="numero_camiseta"/>
+              <field name="fecha_firma"/>
+              <field name="nacionalidad"/>
+            </group>        
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+     <!--action de partido -->
+
+    <record model="ir.actions.act_window" id="action_jugador">
+      <field name="name">Jugadores</field>
+      <field name="res_model">futbol.jugador</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+  
+
+    <!-- Top menu item -->
+
+    <menuitem name="futbol" id="menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Jugadores" id="futbol.menu_1" parent="futbol.menu_root" action ="futbol.action_jugador"/>
+    <menuitem name="Partidos" id="futbol.menu_2" parent="futbol.menu_root" action ="futbol.action_partido"/>
+    <menuitem name="Equipos" id="futbol.menu_3" parent="futbol.menu_root" action ="futbol.action_equipo"/>
+   
+
+  </data>
+</odoo>
